@@ -1,23 +1,28 @@
  import React, { useState } from 'react';
- import { motion } from 'framer-motion';
- function App() {
- const [username, setUsername] = useState('');
- const [password, setPassword] = useState('');
- const [message, setMessage] = useState('');
- const handleLogin = async () => {
- const res = await fetch('http://localhost:8000/login/', {
- method: 'POST',
- headers: { 'Content-Type': 'application/json' },
- body: JSON.stringify({ username, password })
- }); 
- if (res.ok) {
+import { motion } from 'framer-motion';
+
+function App() {
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+  const [message, setMessage] = useState('');
+
+  const handleLogin = async () => {
+    const res = await fetch('http://localhost:8000/login/', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ username, password })
+    }); 
+
+    if (res.ok) {
       setMessage('✅ Login exitoso');
     } else {
       setMessage('❌ Usuario o contraseña incorrectos');
     }
   };
+
   return (
     <div className="container mt-5">
+      <h1 className="mb-4 text-center">Hola, este es mi nuevo cambio</h1> {/* NUEVA LÍNEA */}
       <motion.div
         className="card p-4"
         initial={{ opacity: 0, y: -20 }}
@@ -45,5 +50,6 @@
       </motion.div>
     </div>
   );
- }
- export default App;
+}
+
+export default App;
